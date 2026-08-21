@@ -8,330 +8,275 @@
 <style>
   :root{
     
-    --hue:194;
-    --paper:hsl(var(--hue), 16%, 97%);   
-    --plane:hsl(var(--hue), 18%, 92%);   
-    --ink:hsl(var(--hue), 24%, 22%);     
-    --ink-soft:hsl(var(--hue), 14%, 42%);
-    --key:hsl(var(--hue), 68%, 26%);     
-    --key-weak:hsl(var(--hue), 40%, 62%);
-    --line:hsl(var(--hue), 18%, 84%);
-    --on-key:hsl(var(--hue), 30%, 97%);  
-    --slot-edge:hsl(var(--hue), 34%, 56%);
+    --ground:#c9c9c9;
+    --paper:#f6f5f3;         
+    --ink:#1c1110;           
+    --ink-soft:#57504d;
+    --line:#a9a6a2;
+    --line-2:#8d8a86;
+    --deep:#2f5d50;          
+    --deep-2:#24483f;
+    --dark:#3b3532;          
+    --ghost:#bcbbb9;         
+    --slot-bg:rgba(28,17,16,.05);
+    --slot-line:#8d8a86;
+    --slot-edge:#6f6a67;     
+    --ph-fill:#d8d5d1;
+    --r:14px;
     
-    --header-h:78px;
-    
-    --fz-1:11px; --fz-2:13px; --fz-3:15px; --fz-4:18px; --fz-5:22px;
-    --fz-6:26px; --fz-7:32px; --fz-8:39px; --fz-9:47px;
-    --en:"Cormorant Garamond",Georgia,"Times New Roman",serif;
-    --mincho:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
-    --jp:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic Medium",
-         "Yu Gothic",sans-serif;
-    --gutter-y:clamp(78px,10vh,124px);   
+    --shadow:-6px 10px 22px rgba(28,17,16,.20);
+    --shadow-s:-3px 5px 12px rgba(28,17,16,.16);
+    --hd-h:72px;
+    --jut:44px;              
+    --en:"Helvetica Neue",Arial,"Segoe UI",sans-serif;   
+    --jp:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic",sans-serif;
+    --ease:cubic-bezier(.23,1,.32,1);
   }
-  
-  .is-invert{
-    --paper:hsl(var(--hue), 22%, 26%);
-    --plane:hsl(var(--hue), 22%, 31%);
-    --ink:hsl(var(--hue), 20%, 94%);     
-    --ink-soft:hsl(var(--hue), 16%, 80%);
-    --key:hsl(var(--hue), 40%, 86%);     
-    --key-weak:hsl(var(--hue), 26%, 62%);
-    --line:hsl(var(--hue), 14%, 44%);
-    --on-key:hsl(var(--hue), 26%, 16%);
-    --slot-edge:hsl(var(--hue), 30%, 70%);
-    background:var(--paper);color:var(--ink);
-  }
+  @media(min-width:900px){:root{--hd-h:84px;--jut:78px}}
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
-    background:var(--paper);color:var(--ink);
-    font-family:var(--jp);font-size:var(--fz-3);
-    line-height:2.1;letter-spacing:.06em;
+    background:var(--ground);color:var(--ink);
+    font-family:var(--jp);font-size:14px;
+    line-height:2.0;letter-spacing:.05em;
     font-feature-settings:"palt";
     -webkit-font-smoothing:antialiased;
-    padding-top:var(--header-h);  
+    padding-top:var(--hd-h);
   }
   img{max-width:100%}
   a{color:inherit;text-decoration:none}
+  ol,ul{list-style:none}
   
   .np{display:inline-block}
-  .ln{display:block;white-space:nowrap}   
 
   
   
-  .ph{position:relative;overflow:hidden;background:var(--plane);
-    outline:2px dashed var(--slot-edge);outline-offset:-2px}
+  .ph{position:relative;overflow:hidden;background:var(--ph-fill);
+    border:1px dashed var(--slot-edge)}
   .ph::after{ 
-    content:attr(data-slot);position:absolute;right:10px;bottom:9px;
-    font-family:var(--jp);font-size:var(--fz-1);letter-spacing:.12em;
-    color:var(--ink-soft);background:var(--paper);
-    padding:3px 10px;border:1px dashed var(--line);border-radius:2px;
-    line-height:1.6;white-space:nowrap;max-width:calc(100% - 20px);
-    overflow:hidden;text-overflow:ellipsis}
+    content:attr(data-slot);position:absolute;right:8px;bottom:8px;
+    max-width:calc(100% - 16px);
+    font-family:var(--en);font-size:10px;letter-spacing:.1em;
+    color:rgba(28,17,16,.72);background:rgba(255,255,255,.92);
+    padding:3px 9px;border:1px solid var(--slot-edge);border-radius:2px;
+    line-height:1.7;text-align:right}
 
   
-  .wave::after{content:"";display:block;width:132px;height:8px;
-    margin-top:15px;background:var(--key-weak);
-    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='8'%3E%3Cpath d='M0 6 Q6 1 12 6 T24 6 T36 6 T48 6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") 0 0/48px 8px repeat-x;
-    mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='8'%3E%3Cpath d='M0 6 Q6 1 12 6 T24 6 T36 6 T48 6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") 0 0/48px 8px repeat-x;
-    animation:wave-flow 5.5s linear infinite}
-  @keyframes wave-flow{
-    to{-webkit-mask-position:-48px 0;mask-position:-48px 0}}
-  .wave.is-center::after{margin-left:auto;margin-right:auto}
+  .wrap{width:min(1160px,92vw);margin:0 auto}
+  .block{padding:clamp(72px,7vw,116px) 0}
+  .block--paper{background:var(--paper)}
+  .block--dark{background:var(--dark);color:#fff}
+  
+  .sec-ttl{position:relative;padding-top:104px;text-align:center;
+    margin-bottom:36px}
+  .sec-ttl::before{content:"";position:absolute;top:0;left:50%;
+    width:1px;height:84px;background:currentColor;opacity:.55;
+    transform:translateX(-50%)}
+  .sec-ttl__en{display:block;font-family:var(--en);font-weight:400;
+    font-size:clamp(26px,3.2vw,38px);letter-spacing:.24em;line-height:1.15}
+  .sec-ttl__ja{display:block;margin-top:1.1em;font-size:12px;
+    font-weight:400;letter-spacing:.3em;opacity:.72}
+  .lead{max-width:34em;margin:0 auto;text-align:center;line-height:2.15}
+  .note{max-width:36em;margin:0 auto;font-size:12px;line-height:2;
+    color:var(--ink-soft);text-align:center}
 
   
-  header.site{position:fixed;inset:0 0 auto 0;z-index:50;
-    height:var(--header-h);
-    display:flex;align-items:center;justify-content:space-between;
-    gap:clamp(14px,2.4vw,40px);padding:0 5vw;
-    background:hsl(var(--hue), 16%, 97%, .93);
-    border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
-  .brand{display:flex;align-items:baseline;gap:clamp(8px,1.1vw,14px);
-    flex:0 1 auto;min-width:0;overflow:hidden}
-  .brand__en{font-family:var(--en);font-size:var(--fz-5);letter-spacing:.3em;
-    color:var(--key);line-height:1.3}
-  .brand__jp{font-family:var(--mincho);font-size:var(--fz-2);
-    letter-spacing:.2em;color:var(--ink-soft);line-height:1.5}
-  header.site .brand__en,header.site .brand__jp{
-    flex:0 1 auto;min-width:0;max-width:100%;
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  
-  header.site nav{display:flex;align-items:center;gap:clamp(13px,1.7vw,30px);
-    flex:0 0 auto}
-  header.site nav>a{font-family:var(--mincho);font-size:var(--fz-2);
-    letter-spacing:.18em;white-space:nowrap}
-  header.site nav>a:hover{color:var(--key)}
-  .tel-box{text-align:right;line-height:1.5;padding-left:6px;
-    flex:0 0 auto;white-space:nowrap}
-  .tel-num{display:block;font-family:var(--en);font-size:var(--fz-5);
-    letter-spacing:.1em;color:var(--key)}
-  .tel-box small{font-size:var(--fz-1);letter-spacing:.08em;
-    color:var(--ink-soft)}
-  .btn-key{display:inline-block;background:var(--key);color:var(--on-key);
-    font-family:var(--mincho);font-size:var(--fz-2);letter-spacing:.24em;
-    text-indent:.24em;padding:13px 26px;border:1px solid var(--key);
-    white-space:nowrap;transition:opacity .3s}
-  .btn-key:hover{opacity:.82}
-  .btn-ghost{display:inline-block;color:var(--ink);
-    font-family:var(--mincho);font-size:var(--fz-2);letter-spacing:.24em;
-    text-indent:.24em;padding:13px 26px;border:1px solid var(--line);
-    transition:border-color .3s,color .3s}
-  .btn-ghost:hover{border-color:var(--key);color:var(--key)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;
+    min-height:54px;padding:15px 32px;border-radius:999px;
+    font-size:14px;letter-spacing:.16em;line-height:1.5;white-space:nowrap;
+    transition:transform .3s var(--ease),background-color .3s var(--ease)}
+  .btn--deep{background:var(--deep);color:#fff;box-shadow:var(--shadow-s)}
+  .btn--deep:hover{background:var(--deep-2)}
+  .btn--line{border:1px solid currentColor}
+  .btn--line:hover{opacity:.65}
 
   
-  .band{padding:var(--gutter-y) 0;scroll-margin-top:calc(var(--header-h) + 6px)}
-  .block{max-width:1080px;margin:0 auto;padding:0 5vw}
-  .sec-head{display:flex;align-items:flex-start;gap:clamp(18px,2.6vw,34px)}
-  .sec-num{font-family:var(--en);font-size:var(--fz-7);letter-spacing:.24em;
-    line-height:1.1;color:var(--key-weak)}
-  .sec-en{font-family:var(--en);font-size:var(--fz-2);letter-spacing:.34em;
-    color:var(--ink-soft);line-height:1.4}
-  .sec-en .dc{font-size:1.9em;letter-spacing:.02em;line-height:1;
-    color:var(--key)}
-  .sec-h{font-family:var(--mincho);font-weight:500;
-    font-size:clamp(var(--fz-6),3.4vw,var(--fz-8));
-    letter-spacing:.22em;line-height:1.6;margin-top:6px;color:var(--key)}
-  .lead{margin-top:22px;max-width:36em;color:var(--ink)}
-  .band .lead+.lead{margin-top:14px}
+  .hd{position:fixed;top:0;left:0;right:0;z-index:60;height:var(--hd-h);
+    display:flex;align-items:center;gap:18px;padding:0 3vw;
+    background:rgba(201,201,201,.95);border-bottom:1px solid var(--line)}
+  
+  .hd__brand{display:block;min-width:0;line-height:1.35}
+  .hd__name{display:block;white-space:nowrap;font-weight:700;
+    font-size:clamp(14px,1.25vw,18px);letter-spacing:.08em}
+  .hd__sub{display:block;white-space:nowrap;font-size:10.5px;
+    letter-spacing:.06em;color:var(--ink-soft)}
+  .hd__nav{display:none;margin-left:auto;gap:26px;font-size:12.5px;
+    letter-spacing:.1em}
+  .hd__nav a{white-space:nowrap;padding:6px 0;border-bottom:1px solid transparent}
+  .hd__nav a:hover{border-bottom-color:var(--ink)}
+  .hd__tel{display:none;font-family:var(--en);font-size:17px;
+    letter-spacing:.06em;white-space:nowrap}
+  .hd__cta{display:none;min-height:44px;padding:11px 22px;font-size:12.5px}
+  .hd__spacer{margin-left:auto}
+  
+  @media(min-width:820px){
+    .hd__cta{display:inline-flex}
+    .hd__spacer{display:none}
+  }
+  @media(min-width:1024px){.hd__nav{display:flex;margin-left:auto}}
+  @media(min-width:1024px) and (max-width:1200px){.hd__nav{gap:18px}}
+  @media(min-width:1280px){.hd__tel{display:block}}
 
   
-  .hero{padding-top:clamp(46px,7vh,86px);padding-bottom:0}
-  .hero__grid{display:grid;grid-template-columns:58% 1fr;
-    gap:clamp(24px,4vw,56px);align-items:end}
-  .hero__eyebrow{font-family:var(--mincho);font-size:var(--fz-2);
-    letter-spacing:.28em;color:var(--ink-soft)}
-  .hero__eyebrow::before{content:"";display:inline-block;width:34px;
-    height:1px;background:var(--key-weak);vertical-align:.32em;
-    margin-right:14px}
-  
-  .hero__catch{font-family:var(--en);font-weight:400;
-    font-size:clamp(var(--fz-7),4.4vw,52px);
-    letter-spacing:.22em;line-height:1.7;margin-top:22px;color:var(--key)}
-  .hero__catch .dc{font-size:1.4em;letter-spacing:.22em;
-    margin-right:-.16em;line-height:1;vertical-align:-.06em}
-  .hero__jp{font-family:var(--mincho);
-    font-size:clamp(var(--fz-4),2.2vw,var(--fz-5));
-    letter-spacing:.24em;line-height:2;margin-top:18px}
-  .hero__right{padding-bottom:6px}
-  .facts{list-style:none;display:flex;flex-wrap:wrap;gap:8px 10px;
-    margin-top:20px}
-  .facts li{font-size:var(--fz-1);letter-spacing:.14em;line-height:1;
-    color:var(--ink-soft);border:1px solid var(--line);
-    padding:8px 12px;border-radius:999px}
-  .hero__photo{margin-top:clamp(40px,6vh,72px);width:100%;aspect-ratio:5/2}
+  .fv{padding:clamp(38px,5vw,64px) 0 clamp(56px,6vw,84px)}
+  .fv__head{text-align:center;margin-bottom:clamp(28px,3.4vw,44px)}
+  .fv__mark{display:block;font-family:var(--en);font-size:12px;
+    letter-spacing:.42em;color:var(--ink-soft)}
+  .fv__ttl{margin-top:18px;font-size:clamp(28px,4.4vw,50px);
+    font-weight:700;letter-spacing:.22em;line-height:1.75}
+  .fv__lead{margin:20px auto 0;max-width:32em;line-height:2.1;text-align:center}
+  .fv__gates{display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:760px){.fv__gates{grid-template-columns:repeat(3,1fr);gap:18px}}
+  .fv__note{margin-top:26px;text-align:center;font-size:12.5px;
+    letter-spacing:.12em;color:var(--ink-soft)}
 
   
-  .cards{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);
-    gap:clamp(28px,3.4vw,44px) clamp(20px,2.6vw,34px);margin-top:44px}
-  .card{border-top:1px solid var(--line);padding-top:20px}
-  .card__en{font-family:var(--en);font-size:var(--fz-2);letter-spacing:.24em;
-    color:var(--key-weak)}
-  .card h3{font-family:var(--mincho);font-weight:500;font-size:var(--fz-4);
-    letter-spacing:.18em;line-height:1.7;margin-top:8px}
-  .card p{font-size:var(--fz-2);line-height:2;margin-top:8px;
-    color:var(--ink-soft)}
-  .pr{display:block;margin-top:12px;font-family:var(--en);
-    font-size:var(--fz-5);letter-spacing:.08em;color:var(--key)}
-  .pr small{font-family:var(--jp);font-size:var(--fz-1);
-    letter-spacing:.1em;color:var(--ink-soft);margin-left:8px}
-  .menu-note{margin-top:34px;max-width:38em;font-size:var(--fz-2);
-    line-height:2;color:var(--ink-soft)}
+  .gate{display:block}
+  .gate__frame{position:relative;border-radius:var(--r);overflow:hidden;
+    background:#8f8a86;   
+    box-shadow:var(--shadow);
+    transition:transform .4s var(--ease)}
+  .gate:hover .gate__frame{transform:translateY(-4px)}
+  .gate__media{aspect-ratio:16/10;filter:brightness(.55)}
+  @media(min-width:760px){.gate__media{aspect-ratio:3/4}}
+  
+  .gate__media.ph::after{top:8px;bottom:auto}
+  .gate__body{position:absolute;left:0;right:0;bottom:0;z-index:2;
+    padding:26px 20px 22px;
+    background:linear-gradient(180deg,rgba(17,12,11,0) 0%,
+      rgba(17,12,11,.55) 42%,rgba(17,12,11,.84) 100%)}
+  .gate__en{display:inline-block;font-family:var(--en);font-size:11px;
+    letter-spacing:.26em;text-transform:uppercase;color:#fff;
+    background:rgba(17,12,11,.66);border-radius:999px;padding:5px 14px}
+  .gate__ttl{margin-top:14px;color:#fff;font-weight:700;
+    font-size:clamp(25px,2.1vw,30px);letter-spacing:.22em;line-height:1.5}
+  .gate__btn{display:inline-flex;align-items:center;justify-content:center;
+    margin-top:18px;min-height:42px;padding:9px 24px;border-radius:999px;
+    background:var(--deep);color:#fff;font-size:12.5px;letter-spacing:.16em;
+    white-space:nowrap}
+  .gate:hover .gate__btn{background:var(--deep-2)}
 
   
-  .split{display:grid;grid-template-columns:1fr clamp(240px,32%,340px);
-    gap:clamp(30px,5vw,72px);align-items:start;margin-top:0}
-  .split--rev{grid-template-columns:clamp(240px,32%,340px) 1fr}
-  .claim{font-family:var(--mincho);font-weight:500;
-    font-size:clamp(var(--fz-5),2.9vw,var(--fz-7));
-    letter-spacing:.22em;line-height:1.9;margin-top:30px}
-  .promise{list-style:none;margin-top:34px;border-top:1px solid var(--line)}
-  .promise li{display:flex;gap:clamp(14px,2vw,28px);align-items:baseline;
-    border-bottom:1px solid var(--line);padding:16px 2px}
-  .promise h3{flex:0 0 auto;font-family:var(--mincho);font-weight:500;
-    font-size:var(--fz-4);letter-spacing:.18em;width:11em}
-  .promise p{flex:1;font-size:var(--fz-2);line-height:1.9;
-    color:var(--ink-soft)}
+  .cards{display:grid;grid-template-columns:1fr;gap:16px;margin-top:40px}
+  @media(min-width:760px){.cards{grid-template-columns:repeat(3,1fr);gap:20px}}
+  .card{background:var(--paper);border-radius:var(--r);padding:30px 26px 26px;
+    box-shadow:var(--shadow-s);display:flex;flex-direction:column}
+  .card__n{font-family:var(--en);font-size:12px;letter-spacing:.3em;
+    color:var(--deep)}
+  .card__ttl{margin-top:12px;font-size:19px;font-weight:700;letter-spacing:.14em;
+    line-height:1.7}
+  .card p{margin-top:14px;font-size:13px;line-height:2.05;color:var(--ink-soft)}
+  .card__price{margin-top:auto;padding-top:20px;display:flex;align-items:baseline;
+    gap:.7em;border-top:1px solid var(--line)}
+  .card__price-k{font-size:11.5px;letter-spacing:.18em;color:var(--ink-soft);
+    white-space:nowrap}
+  .card__price-v{font-family:var(--en);font-size:21px;letter-spacing:.08em;
+    color:var(--deep);font-weight:700}
   
-  .split__photo{aspect-ratio:3/4;margin-top:8px}
+  .free{display:grid;grid-template-columns:1fr;gap:1px;margin-top:36px;
+    background:var(--line);border-radius:var(--r);overflow:hidden}
+  @media(min-width:640px){.free{grid-template-columns:repeat(3,1fr)}}
+  .free li{background:var(--deep);color:#fff;text-align:center;
+    padding:20px 12px;font-size:13.5px;letter-spacing:.16em}
+  .cards + .note,.free + .note{margin-top:26px}
 
   
-  .sign{margin-top:26px;font-family:var(--mincho);font-size:var(--fz-4);
-    letter-spacing:.2em}
-  .sign small{display:block;font-family:var(--jp);font-size:var(--fz-1);
-    letter-spacing:.12em;color:var(--ink-soft);margin-top:6px}
-  .bio{margin-top:22px;max-width:36em}
-  .bio div{display:flex;gap:16px;border-top:1px solid var(--line);
-    padding:11px 2px;font-size:var(--fz-2);line-height:1.9}
-  .bio dt{flex:0 0 6em;color:var(--ink-soft)}
-  .bio dd{flex:1}
+  .flow{margin-top:44px;max-width:760px;margin-left:auto;margin-right:auto}
+  .flow__item{position:relative;display:grid;grid-template-columns:78px 1fr;
+    gap:22px;padding-bottom:34px}
+  .flow__item:last-child{padding-bottom:0}
+  .flow__item::before{content:"";position:absolute;left:39px;top:46px;bottom:0;
+    width:1px;background:var(--line)}
+  .flow__item:last-child::before{display:none}
+  .flow__n{font-family:var(--en);font-size:clamp(28px,3vw,38px);
+    letter-spacing:.22em;line-height:1.05;color:var(--deep);font-weight:700;
+    text-align:center}
+  .flow__ttl{font-size:17px;font-weight:700;letter-spacing:.14em;line-height:1.7}
+  .flow__d{margin-top:8px;font-size:13px;line-height:2.05;color:var(--ink-soft)}
 
   
-  .flow{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);
-    gap:clamp(20px,2.6vw,34px);margin-top:44px;counter-reset:step}
-  .flow li{border-top:1px solid var(--line);padding-top:18px}
-  .flow .st{font-family:var(--en);font-size:var(--fz-2);letter-spacing:.24em;
-    color:var(--key)}
-  .flow h3{font-family:var(--mincho);font-weight:500;font-size:var(--fz-4);
-    letter-spacing:.18em;margin-top:8px;line-height:1.7}
-  .flow p{font-size:var(--fz-2);line-height:2;margin-top:8px;
-    color:var(--ink-soft)}
-
-  
-  .info{display:grid;grid-template-columns:1fr clamp(280px,40%,420px);
-    gap:clamp(30px,5vw,64px);align-items:start;margin-top:40px}
-  .info dl div{display:flex;border-bottom:1px solid var(--line);
-    padding:13px 2px;font-size:var(--fz-2);line-height:1.9}
-  .info dt{flex:0 0 7.5em;color:var(--ink-soft)}
-  .info dd{flex:1}
-  .info__map{aspect-ratio:4/3}
-
-  
-  .reserve .sec-head,.reserve .lead{margin-left:auto;margin-right:auto}
-  .reserve{text-align:center}
-  .reserve .sec-head{justify-content:center}
-  .ways{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);
-    gap:clamp(18px,2.4vw,28px);margin-top:44px;text-align:left}
-  .way{background:var(--plane);padding:26px 24px 28px;
-    border:1px solid var(--line);display:flex;flex-direction:column}
-  .way--top{border-color:var(--key)}
-  .badge{align-self:flex-start;background:var(--key);color:var(--on-key);
-    font-size:var(--fz-1);letter-spacing:.18em;padding:5px 12px;
-    border-radius:999px;line-height:1.4}
-  .way h3{font-family:var(--mincho);font-weight:500;font-size:var(--fz-5);
-    letter-spacing:.2em;margin-top:14px}
-  .way p{font-size:var(--fz-2);line-height:1.95;margin-top:10px;
-    color:var(--ink-soft);flex:1}
-  .way .tel-big{display:block;font-family:var(--en);font-size:var(--fz-6);
-    letter-spacing:.1em;color:var(--key);margin-top:12px;line-height:1.4}
-  .way .btn-key,.way .btn-ghost{margin-top:18px;text-align:center}
-  .way .btn-ghost{border-color:var(--line);color:var(--ink)}
-
-  
-  footer{padding:64px 5vw 96px;text-align:center;
-    border-top:1px solid var(--line)}
-  footer .brand__en{display:block;margin-bottom:14px}
-  footer p{font-size:var(--fz-2);color:var(--ink-soft);line-height:2.2}
-  footer small{display:block;margin-top:26px;font-family:var(--en);
-    font-size:var(--fz-1);letter-spacing:.24em;color:var(--ink-soft)}
-
-  
-  @media(max-width:1320px){
+  .about{padding-bottom:clamp(72px,7vw,116px)}
+  .about__media{aspect-ratio:3/2;border-radius:var(--r);
+    box-shadow:var(--shadow);
     
-    header.site{gap:clamp(14px,1.6vw,26px)}
-    header.site nav{gap:clamp(13px,1.25vw,22px)}
-  }
-  @media(max-width:1260px){
-    
-    header.site .brand__en{font-size:var(--fz-4)}
-  }
-  @media(max-width:1200px){
-    
-    header.site nav>a:not(.btn-key){display:none}
-    header.site .brand__en{font-size:var(--fz-5)}
-  }
-  @media(max-width:980px){
-    
-    .tel-box small{display:none}
-    .tel-num{font-size:var(--fz-4)}
-    header.site .brand__en{font-size:var(--fz-4)}
-  }
+    position:relative;top:calc(-1 * var(--jut));
+    margin-bottom:calc(-1 * var(--jut))}
+  .about__body{margin-top:48px}
+  .about__ttl{font-size:clamp(24px,2.6vw,33px);font-weight:700;
+    letter-spacing:.22em;line-height:1.85;text-align:center}
+  .about__txt{max-width:38em;margin:26px auto 0;line-height:2.2}
+  .promises{display:grid;grid-template-columns:1fr;gap:18px;margin-top:46px}
+  @media(min-width:760px){.promises{grid-template-columns:repeat(3,1fr);gap:24px}}
+  .promise{border-top:1px solid var(--line);padding-top:20px}
+  .promise__k{font-size:15.5px;font-weight:700;letter-spacing:.14em;line-height:1.8}
+  .promise__d{margin-top:10px;font-size:13px;line-height:2.05;color:var(--ink-soft)}
 
   
-  .sp-bar{display:none}
-  @media(max-width:900px){
-    .hero__grid{grid-template-columns:1fr;align-items:start}
-    .hero__right{padding-bottom:0}
-    .split,.split--rev,.info{grid-template-columns:1fr}
-    .split--rev .split__photo{order:2}
-    .flow{grid-template-columns:repeat(2,1fr)}
-    .ways{grid-template-columns:1fr}
-  }
-  @media(max-width:820px){
-    :root{--header-h:62px}          
-    body{padding-bottom:58px}       
-    
-    header.site nav>a:not(.btn-key),.tel-box{display:none}
-    .brand{flex-direction:column;gap:2px;align-items:flex-start}
-    header.site .brand__en{font-size:var(--fz-4)}
-    .btn-key{padding:11px 20px}
-    .cards{grid-template-columns:1fr}
-    .promise li{flex-direction:column;gap:6px}
-    .promise h3{width:auto}
-    .hero__photo{aspect-ratio:4/3}
-    .sp-bar{display:flex;position:fixed;inset:auto 0 0 0;z-index:60}
-    .sp-bar a{flex:1;text-align:center;padding:15px 0;
-      font-family:var(--mincho);font-size:var(--fz-2);letter-spacing:.2em}
-    .sp-bar .a-tel{background:hsl(var(--hue), 22%, 26%);
-      color:hsl(var(--hue), 20%, 94%)}
-    .sp-bar .a-web{background:hsl(var(--hue), 68%, 26%);
-      color:hsl(var(--hue), 30%, 97%)}
-  }
-  @media(max-width:560px){
-    .flow{grid-template-columns:1fr}
-    
-    header.site .brand__en{font-size:var(--fz-3);letter-spacing:.22em}
-  }
+  .info{display:grid;grid-template-columns:1fr;gap:28px;margin-top:40px}
+  @media(min-width:900px){.info{grid-template-columns:1fr 1fr;gap:44px;
+    align-items:start}}
+  .info dl{border-top:1px solid var(--line)}
+  .info dl > div{display:grid;grid-template-columns:7.5em 1fr;gap:10px;
+    padding:15px 0;border-bottom:1px solid var(--line)}
+  .info dt{font-size:12px;letter-spacing:.18em;color:var(--ink-soft);
+    line-height:2.1}
+  .info dd{font-size:13.5px;line-height:2.1}
+  .info__map{aspect-ratio:4/3;border-radius:var(--r);box-shadow:var(--shadow-s)}
+  .info__area{margin-top:22px;font-size:13px;line-height:2.1;color:var(--ink-soft)}
 
   
-  .fade-up{opacity:0;transform:translateY(26px);
-    transition:opacity .9s ease,transform .9s cubic-bezier(.23,1,.32,1)}
-  .fade-up.show{opacity:1;transform:none}
+  .contact{text-align:center}
+  .contact__ttl{font-size:clamp(24px,2.8vw,34px);font-weight:700;
+    letter-spacing:.22em;line-height:1.85}
+  .contact__d{max-width:32em;margin:22px auto 0;line-height:2.15;opacity:.86}
+  .contact__tel{display:inline-block;margin-top:30px;font-family:var(--en);
+    font-size:clamp(26px,3vw,36px);letter-spacing:.22em;line-height:1.3}
+  .contact__hours{margin-top:8px;font-size:12px;letter-spacing:.14em;opacity:.78}
+  .contact__btns{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;
+    margin-top:34px}
+
+  
+  .ft{background:var(--dark);color:#fff;text-align:center;
+    padding:52px 5vw calc(52px + env(safe-area-inset-bottom))}
+  
+  .ft__name{display:block;font-size:clamp(14px,3.4vw,17px);font-weight:700;
+    letter-spacing:.16em;white-space:nowrap}
+  .ft__d{margin-top:16px;font-size:12.5px;line-height:2.1;opacity:.82}
+  .ft__c{display:block;margin-top:26px;font-family:var(--en);font-size:10.5px;
+    letter-spacing:.2em;opacity:.6}
+
+  
+  .sp-bar{position:fixed;left:0;right:0;bottom:0;z-index:65;display:flex;
+    border-top:1px solid rgba(255,255,255,.2)}
+  .sp-bar a{flex:1;display:flex;align-items:center;justify-content:center;
+    min-height:56px;padding:10px 6px calc(10px + env(safe-area-inset-bottom));
+    font-size:13px;letter-spacing:.12em;color:#fff;background:var(--dark)}
+  .sp-bar a + a{background:var(--deep)}
+  @media(min-width:820px){.sp-bar{display:none}}
+
+  
+  .js .fade-up{opacity:0;transform:translateY(16px);
+    transition:opacity .8s var(--ease),transform .8s var(--ease)}
+  .js .fade-up.show{opacity:1;transform:none}
 
   @media(prefers-reduced-motion:reduce){
-    *{animation:none!important;transition:none!important}
-    .fade-up{opacity:1;transform:none}       
+    
+    .js .fade-up{opacity:1;transform:none;transition:none}
+    .gate:hover .gate__frame{transform:none}
+    *,*::before,*::after{animation:none !important;transition:none !important}
     html{scroll-behavior:auto}
   }
 
-  @media(max-width:820px){}
-  .spec{max-width:1080px;margin:80px auto 60px;padding:32px 5vw;
-    border:1px dashed var(--line);background:var(--plane);
-    font-size:var(--fz-2);line-height:2;color:var(--ink);overflow-x:auto}
-  .spec h3{font-size:var(--fz-2);letter-spacing:.2em;margin-bottom:10px}
+  
+  .fv__ttl .t-slot,.about__ttl .t-slot,.contact__ttl .t-slot,
+  @media(max-width:819px){}
+  .spec{max-width:1080px;margin:90px auto 60px;padding:34px 4vw;
+    border:1px dashed var(--slot-line);background:rgba(255,255,255,.5);
+    font-size:12.5px;line-height:2.1;color:var(--ink);overflow-x:auto}
+  .spec h3{font-size:13px;letter-spacing:.2em;margin-bottom:10px}
   .spec table{border-collapse:collapse;width:100%;margin:10px 0}
-  .spec td,.spec th{border:1px solid var(--line);padding:6px 12px;
-    text-align:left;font-weight:normal;font-size:var(--fz-2)}
+  .spec td,.spec th{border:1px solid var(--line-2);padding:5px 12px;
+    text-align:left;font-weight:normal;font-size:12px}
 
 
 .ph::after,.ph::before{content:none!important;display:none!important}
@@ -339,6 +284,8 @@
 .ph>img,.ph .slide>img{width:100%;height:100%;object-fit:cover;display:block}
 .ph .slide{background-size:cover;background-position:center}
 </style>
+
+<script>document.documentElement.classList.add('js')</script>
 <meta name="description" content="フラワーショップのNicolai Bergmann Flowers &amp; Design Flagship Store。日本、〒107-0062 東京都港区南青山５丁目７−２にて営業中。お気軽にお問い合わせください。">
 <meta property="og:title" content="Nicolai Bergmann Flowers &amp; Design Flagship Store">
 <meta property="og:description" content="フラワーショップのNicolai Bergmann Flowers &amp; Design Flagship Store。日本、〒107-0062 東京都港区南青山５丁目７−２">
@@ -404,327 +351,375 @@ div:has(> dd:empty){display:none !important}
 </style>
 </head>
 <body>
-<nav class="vbar" aria-label="デザイン案の切り替え"><div class="wrap vbar__inner"><span class="vbar__note">エレノアがNicolai Bergmann Flowers &amp; Design Flagship Store様へのご提案として作成した見本です。Nicolai Bergmann Flowers &amp; Design Flagship Store様ご自身が公開されているものではありません。</span><ul class="vbar__list"><li><a class="vbar__link" href="../">1　誠実な開示</a></li><li><a class="vbar__link" href="./" aria-current="page">2　静かな信頼</a></li><li><a class="vbar__link" href="../3/">3　額装の格（リッチプラン専用デザイン）</a></li></ul></div></nav>
+<nav class="vbar" aria-label="デザイン案の切り替え"><div class="wrap vbar__inner"><span class="vbar__note">エレノアがNicolai Bergmann Flowers &amp; Design Flagship Store様へのご提案として作成した見本です。Nicolai Bergmann Flowers &amp; Design Flagship Store様ご自身が公開されているものではありません。</span><ul class="vbar__list"><li><a class="vbar__link" href="../">1　誠実な開示</a></li><li><a class="vbar__link" href="./" aria-current="page">2　入口で分ける</a></li><li><a class="vbar__link" href="../3/">3　額装の格（リッチプラン専用デザイン）</a></li></ul></div></nav>
 
-<header class="site">
-  <a class="brand" href="#top">
-    <span class="brand__en">Nicolai Bergmann Flowers & Design Flagship Store</span>
-    <span class="brand__jp">Nicolai Bergmann Flowers & Design Flagship Store</span>
-  </a>
-  <nav>
-    <a href="#service">できること</a>
-    <a href="#belief">かんがえ</a>
-    <a href="#about">わたしたち</a>
-    <a href="#access">店舗情報</a>
-    <span class="tel-box">
-      <span class="tel-num">03-5464-0743</span>
-      <small>10:00〜19:00</small>
+<header class="hd">
+  <a class="hd__brand" href="#top">
+    <span class="hd__name">
+      Nicolai Bergmann Flowers & Design Flagship Store
     </span>
-    <a class="btn-key" href="#reserve">ご予約</a>
+    <span class="hd__sub">
+      Nicolai Bergmann Flowers & Design Flagship Store ｜ フラワーショップ・東京都港区南青山
+    </span>
+  </a>
+  <span class="hd__spacer"></span>
+  <nav class="hd__nav">
+    <a href="#service">対応する工事</a>
+    <a href="#flow">施工の道筋</a>
+    <a href="#about">私たちのこと</a>
+    <a href="#access">会社案内</a>
   </nav>
+  <a class="hd__tel" href="tel:0420000000">
+    03-5464-0743
+  </a>
+  <a class="hd__cta btn btn--deep" href="#reserve">無料で相談する</a>
 </header>
 
 <main id="top">
 
   
-  <section class="hero band">
-    <div class="block hero__grid">
-      <div>
-        <p class="hero__eyebrow">
-          南青山のフラワーショップ
-        </p>
-        <h1 class="hero__catch">
-          <span class="ln"><span class="np">Flowers </span><span class="np">for Tokyo</span></span><span class="ln"><span class="np">Made </span><span class="np">in Aoyama</span></span>
+  <section class="fv">
+    <div class="wrap">
+      <div class="fv__head">
+        <span class="fv__mark">
+          BERGMANN
+        </span>
+        <h1 class="fv__ttl">
+          <span class="np">花のある一日を、</span><span class="np">南青山の</span><span class="np">この店から。</span>
         </h1>
-        <p class="hero__jp">
-          <span class="np">花のある</span><span class="np">毎日を、</span><span class="np">南青山から。</span>
+        <p class="lead fv__lead fade-up">
+          <span class="np">東京都港区南青山のフラワーショップです。</span><span class="np">季節の花を選び、</span><span class="np">花束やアレンジメントに</span><span class="np">仕立てています。</span><span class="np">贈りものにも、日々の花にも。</span>
         </p>
       </div>
-      <div class="hero__right">
-        <p class="lead">
-          <span class="np">東京都港区南青山の</span><span class="np">フラワーショップです。</span><span class="np">季節の花を仕入れ、</span><span class="np">花束やアレンジメントに</span><span class="np">仕立ててお渡ししています。</span><span class="np">贈りものにも、</span><span class="np">ご自宅に飾る一輪にも、</span><span class="np">ご用途に合わせてお作りします。</span>
-        </p>
-        <ul class="facts">
-          <li>季節の生花を扱います</li>
-          <li>花束・アレンジメントをお作りします</li>
-          <li>ご用途を伺って仕立てます</li>
-          <li>年中無休・十時から十九時</li>
-        </ul>
+
+      <div class="fv__gates">
+        <a class="gate" href="#service">
+          <div class="gate__frame">
+            <div class="gate__media ph"><img src="https://images.unsplash.com/photo-1600499273056-52b8a9f6859f?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8MTB8fGJ1c2luZXNzJTIwaW50ZXJpb3IlMjBpbnRlcmlvcnxlbnwxfDF8fHwxNzg3MjM4NjE1fDA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="仕事1のサービス写真" loading="eager" fetchpriority="high" decoding="async"></div>
+            <div class="gate__body">
+              <span class="gate__en">
+                FLOWERS
+              </span>
+              <h2 class="gate__ttl">
+                <span class="np">季節の花と</span><span class="np">グリーン</span>
+              </h2>
+              <span class="gate__btn">くわしく見る</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="gate" href="#service">
+          <div class="gate__frame">
+            <div class="gate__media ph"><img src="https://images.unsplash.com/photo-1579488081688-3dbbbae7893e?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8MXx8YnVzaW5lc3MlMjBpbnRlcmlvciUyMGludGVyaW9yfGVufDF8MXx8fDE3ODcyMzg2MTV8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="仕事2のサービス写真" loading="lazy" decoding="async"></div>
+            <div class="gate__body">
+              <span class="gate__en">
+                GIFT
+              </span>
+              <h2 class="gate__ttl">
+                <span class="np">贈りものの</span><span class="np">花選び</span>
+              </h2>
+              <span class="gate__btn">くわしく見る</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="gate" href="#service">
+          <div class="gate__frame">
+            <div class="gate__media ph"><img src="https://images.unsplash.com/photo-1546967900-1bea5f16b69d?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8Mnx8YnVzaW5lc3MlMjBpbnRlcmlvciUyMGludGVyaW9yfGVufDF8MXx8fDE3ODcyMzg2MTV8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="仕事3のサービス写真" loading="lazy" decoding="async"></div>
+            <div class="gate__body">
+              <span class="gate__en">
+                STORE
+              </span>
+              <h2 class="gate__ttl">
+                <span class="np">南青山の</span><span class="np">店舗</span>
+              </h2>
+              <span class="gate__btn">くわしく見る</span>
+            </div>
+          </div>
+        </a>
       </div>
+
+      <p class="fv__note">
+        
+      </p>
     </div>
-    <div class="ph hero__photo"><img src="https://images.unsplash.com/photo-1549637642-90187f64f420?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8NXx8YnVzaW5lc3MlMjBpbnRlcmlvciUyMGludGVyaW9yfGVufDF8MHx8fDE3ODcyMzc1NzN8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="院内の全景・明るく人の気配" loading="eager" fetchpriority="high" decoding="async"></div>
   </section>
 
   
-  <section id="service" class="band">
-    <div class="block">
-      <div class="sec-head fade-up">
-        <span class="sec-num">01</span>
-        <div>
-          <p class="sec-en">
-            WHAT WE DO
-          </p>
-          <h2 class="sec-h wave">
-            花を仕立てる
-          </h2>
-        </div>
-      </div>
+  <section id="service" class="block block--paper">
+    <div class="wrap">
+      <h2 class="sec-ttl">
+        <span class="sec-ttl__en">SERVICE</span>
+        <span class="sec-ttl__ja">対応する工事と費用の目安</span>
+      </h2>
       <p class="lead fade-up">
-        <span class="np">その日の花を見て、</span><span class="np">お渡しする形を決めます。</span><span class="np">贈る相手やお飾りになる場所を</span><span class="np">伺いながら、</span><span class="np">色と大きさをご相談ください。</span>
+        <span class="np">花束からアレンジメントまで、</span><span class="np">ご用途とご予算にあわせて</span><span class="np">お作りします。</span><span class="np">内容はお電話でご相談ください。</span>
       </p>
-      <ul class="cards fade-up">
-        <li class="card">
-          <span class="card__en">BOUQUET</span>
-          <h3>花束</h3>
-          <p><span class="np">季節の花を束ねて、</span><span class="np">そのままお渡しできる形に。</span></p>
-          <span class="pr">—</span>
-        </li>
-        <li class="card">
-          <span class="card__en">ARRANGEMENT</span>
-          <h3>アレンジメント</h3>
-          <p><span class="np">器に生けてお作りします。</span><span class="np">そのまま飾っていただけます。</span></p>
-          <span class="pr">—</span>
-        </li>
-        <li class="card">
-          <span class="card__en">GIFT</span>
-          <h3>ギフトフラワー</h3>
-          <p><span class="np">お祝いやご挨拶に。</span><span class="np">ご用途を伺って仕立てます。</span></p>
-          <span class="pr">—</span>
-        </li>
-        <li class="card">
-          <span class="card__en">PLANT</span>
-          <h3>観葉植物・鉢物</h3>
-          <p><span class="np">鉢のまま飾れる植物です。</span><span class="np">置く場所に合わせて選べます。</span></p>
-          <span class="pr">—</span>
-        </li>
-        <li class="card">
-          <span class="card__en">DECORATION</span>
-          <h3>装花</h3>
-          <p><span class="np">店舗や会場に飾る花です。</span><span class="np">広さとご予算を伺ってから、</span><span class="np">お作りする内容を決めます。</span></p>
-          <span class="pr">—</span>
-        </li>
-        <li class="card">
-          <span class="card__en">DRIED</span>
-          <h3>ドライフラワー</h3>
-          <p><span class="np">乾かした花を束ねます。</span><span class="np">水やりのいらない飾り方です。</span></p>
-          <span class="pr">—</span>
-        </li>
-      </ul>
-      <p class="menu-note fade-up">
-        <span class="np">料金はお花の種類や大きさ、</span><span class="np">ご用途によって変わります。</span><span class="np">店頭またはお電話でお尋ねください。</span>
-      </p>
-    </div>
-  </section>
 
-  
-  <section id="belief" class="band is-invert">
-    <div class="block split">
-      <div>
-        <div class="sec-head fade-up">
-          <span class="sec-num">02</span>
-          <div>
-            <p class="sec-en">
-              OUR PROMISE
-            </p>
-            <h2 class="sec-h wave">
-              お約束すること
-            </h2>
-          </div>
-        </div>
-        <p class="claim fade-up">
-          <span class="np">伺ってから、</span><span class="np">花を選びます。</span>
-        </p>
-        <p class="lead fade-up">
-          <span class="np">どなたに贈るのか、</span><span class="np">どこに飾るのか、</span><span class="np">いつまで置いておきたいのか。</span><span class="np">そこが決まると、</span><span class="np">選ぶ花も束ね方も変わります。</span><span class="np">決めきれないままお越しいただいて構いません。</span><span class="np">お話を伺いながら、</span><span class="np">その日の花のなかからご一緒に選びます。</span>
-        </p>
-        <ul class="promise fade-up">
-          <li>
-            <h3><span class="np">その日の花から</span></h3>
-            <p><span class="np">市場から届いた花を見て、</span><span class="np">その日にお出しできるものをご案内します。</span></p>
-          </li>
-          <li>
-            <h3><span class="np">用途を伺う</span></h3>
-            <p><span class="np">贈りものか、</span><span class="np">ご自宅用か。お伺いしてから形を決めます。</span></p>
-          </li>
-          <li>
-            <h3><span class="np">持ち帰りまで</span><span class="np">考える</span></h3>
-            <p><span class="np">お持ち帰りの時間や道のりを伺い、</span><span class="np">包み方を変えてお渡しします。</span></p>
-          </li>
-        </ul>
-      </div>
-      <div class="ph split__photo fade-up"><img src="https://images.unsplash.com/photo-1768659347532-74d3b1efb0ae?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8MXx8YnVzaW5lc3MlMjBpbnRlcmlvciUyMGhhbmRzJTIwY2xvc2V1cHxlbnwxfDF8fHwxNzg3MjY0Mzc3fDA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="施術風景（手元まで・顔は写さない）" loading="lazy" decoding="async"></div>
-    </div>
-  </section>
-
-  
-  <section id="about" class="band">
-    <div class="block split split--rev">
-      <div class="ph split__photo fade-up"><img src="https://images.unsplash.com/photo-1780733058018-d1219383e97a?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8MXx8YnVzaW5lc3MlMjBpbnRlcmlvciUyMHBvcnRyYWl0fGVufDF8MXx8fDE3ODcyMzcyODl8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="施術者のポートレート（自然光・白衣でなく私服）" loading="lazy" decoding="async"></div>
-      <div>
-        <div class="sec-head fade-up">
-          <span class="sec-num">03</span>
-          <div>
-            <p class="sec-en">
-              ABOUT US
-            </p>
-            <h2 class="sec-h wave">
-              私たちのこと
-            </h2>
-          </div>
-        </div>
-        <p class="lead fade-up">
-          <span class="np">東京都港区南青山で、</span><span class="np">花束やアレンジメント、</span><span class="np">観葉植物などをお作りしています。</span><span class="np">贈りもののご相談から、</span><span class="np">ご自宅に飾る一輪まで、</span><span class="np">ご用途を伺って仕立てるのが仕事です。</span><span class="np">年中無休で十時から十九時まで、</span><span class="np">店頭でお待ちしています。</span>
-        </p>
-        <p class="sign fade-up">
-          Nicolai Bergmann Flowers & Design Flagship Store<small>ニコライ バーグマン フラワーズ アンド デザイン フラッグシップストア</small>
-        </p>
-        <dl class="bio fade-up">
-          <div>
-            <dt>経歴</dt>
-            <dd>—</dd>
-          </div>
-          <div>
-            <dt>修了課程</dt>
-            <dd>—</dd>
-          </div>
-          <div>
-            <dt>得意</dt>
-            <dd>花束・アレンジメント・ギフトフラワー</dd>
-          </div>
-        </dl>
-      </div>
-    </div>
-  </section>
-
-  
-  <section class="band is-invert">
-    <div class="block">
-      <div class="sec-head fade-up">
-        <div>
-          <p class="sec-en">
-            HOW IT WORKS
+      <div class="cards">
+        <div class="card fade-up">
+          <span class="card__n">01</span>
+          <h3 class="card__ttl">
+            花束・ブーケ
+          </h3>
+          <p>
+            <span class="np">お渡しする相手や場面をうかがい、</span><span class="np">季節の花を組み合わせて</span><span class="np">束ねます。</span><span class="np">本数や色みのご希望も</span><span class="np">あわせてお伝えください。</span>
           </p>
-          <h2 class="sec-h wave">
-            ご来店から お渡しまで
-          </h2>
+          <div class="card__price">
+            <span class="card__price-k">目安</span>
+            <span class="card__price-v">
+              お見積り
+            </span>
+          </div>
+        </div>
+
+        <div class="card fade-up">
+          <span class="card__n">02</span>
+          <h3 class="card__ttl">
+            フラワーアレンジメント
+          </h3>
+          <p>
+            <span class="np">器に花を挿し込み、</span><span class="np">そのまま飾れる形に</span><span class="np">仕上げます。</span><span class="np">置く場所の広さや高さ、</span><span class="np">雰囲気をお聞かせください。</span>
+          </p>
+          <div class="card__price">
+            <span class="card__price-k">目安</span>
+            <span class="card__price-v">
+              お見積り
+            </span>
+          </div>
+        </div>
+
+        <div class="card fade-up">
+          <span class="card__n">03</span>
+          <h3 class="card__ttl">
+            ギフト・お祝いの花
+          </h3>
+          <p>
+            <span class="np">お祝いや記念日、</span><span class="np">季節のご挨拶など、</span><span class="np">贈る場面にあわせて</span><span class="np">花を選びます。</span><span class="np">ご用途をお知らせください。</span>
+          </p>
+          <div class="card__price">
+            <span class="card__price-k">目安</span>
+            <span class="card__price-v">
+              お見積り
+            </span>
+          </div>
         </div>
       </div>
-      <ol class="flow fade-up">
-        <li>
-          <span class="st">Step 01</span>
-          <h3>ご相談</h3>
-          <p><span class="np">ご用途とお渡しの日を伺います。</span><span class="np">贈る相手やお飾りになる場所を</span><span class="np">お聞かせください。</span></p>
+
+      <ul class="free fade-up">
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+
+      
+      <p class="note fade-up">
+        掲載内容は2026年8月時点のものです。料金は花材や本数によって変わるため、ご注文のたびに都度確認をお願いいたします。
+      </p>
+    </div>
+  </section>
+
+  
+  <section id="flow" class="block">
+    <div class="wrap">
+      <h2 class="sec-ttl">
+        <span class="sec-ttl__en">FLOW</span>
+        <span class="sec-ttl__ja">施工の道筋</span>
+      </h2>
+      <p class="lead fade-up">
+        <span class="np">ご相談からお渡しまでの流れを、</span><span class="np">はじめての方にも分かるよう</span><span class="np">順を追ってご案内します。</span>
+      </p>
+
+      <ol class="flow">
+        <li class="flow__item fade-up">
+          <span class="flow__n">01</span>
+          <div>
+            <h3 class="flow__ttl">
+              ご相談
+            </h3>
+            <p class="flow__d">
+              <span class="np">贈る相手や場面、</span><span class="np">お渡しの日を</span><span class="np">お聞かせください。</span><span class="np">お電話でもメールでも</span><span class="np">ご相談いただけます。</span>
+            </p>
+          </div>
         </li>
-        <li>
-          <span class="st">Step 02</span>
-          <h3>花を選ぶ</h3>
-          <p><span class="np">その日店頭にある花のなかから、</span><span class="np">色と大きさをご一緒に決めます。</span></p>
+        <li class="flow__item fade-up">
+          <span class="flow__n">02</span>
+          <div>
+            <h3 class="flow__ttl">
+              花選び
+            </h3>
+            <p class="flow__d">
+              <span class="np">店頭に並ぶ花の中から、</span><span class="np">ご希望の色みや雰囲気に近いものを</span><span class="np">一緒にお選びします。</span>
+            </p>
+          </div>
         </li>
-        <li>
-          <span class="st">Step 03</span>
-          <h3>お仕立て</h3>
-          <p><span class="np">花束やアレンジメントに仕立てます。</span><span class="np">お時間は内容によって変わります。</span></p>
+        <li class="flow__item fade-up">
+          <span class="flow__n">03</span>
+          <div>
+            <h3 class="flow__ttl">
+              お仕立て
+            </h3>
+            <p class="flow__d">
+              <span class="np">選んだ花を束ね、</span><span class="np">または器に挿して</span><span class="np">形を整えます。</span><span class="np">包み方やリボンもご相談ください。</span>
+            </p>
+          </div>
         </li>
-        <li>
-          <span class="st">Step 04</span>
-          <h3>お渡し</h3>
-          <p><span class="np">お持ち帰りの道のりに合わせて包み、</span><span class="np">店頭でお渡しします。</span></p>
+        <li class="flow__item fade-up">
+          <span class="flow__n">04</span>
+          <div>
+            <h3 class="flow__ttl">
+              仕上がり確認
+            </h3>
+            <p class="flow__d">
+              <span class="np">仕上がりを見ていただき、</span><span class="np">気になるところがあれば</span><span class="np">その場で直します。</span><span class="np">ご遠慮なくお伝えください。</span>
+            </p>
+          </div>
+        </li>
+        <li class="flow__item fade-up">
+          <span class="flow__n">05</span>
+          <div>
+            <h3 class="flow__ttl">
+              お渡し
+            </h3>
+            <p class="flow__d">
+              <span class="np">水あげと包みを整えて、</span><span class="np">店頭でお渡しします。</span><span class="np">持ち運びの時間に応じて</span><span class="np">包み方を変えます。</span>
+            </p>
+          </div>
         </li>
       </ol>
-      <p class="menu-note fade-up">
-        <span class="np">花を持ち帰る袋をお持ちでしたら、</span><span class="np">お使いいただけます。</span><span class="np">花粉や水滴が付くことがありますので、</span><span class="np">お召し物にはご留意ください。</span>
-      </p>
     </div>
   </section>
 
   
-  <section id="access" class="band">
-    <div class="block">
-      <div class="sec-head fade-up">
-        <div>
-          <p class="sec-en">
-            STORE INFO
-          </p>
-          <h2 class="sec-h wave">
-            店舗のご案内
-          </h2>
+  <section id="about" class="block--paper">
+    <div class="wrap about">
+      <div class="about__media ph"><img src="https://images.unsplash.com/photo-1771491237225-01931a752f58?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8Nnx8YnVzaW5lc3MlMjBpbnRlcmlvciUyMGhhbmRzJTIwY2xvc2V1cHxlbnwxfDB8fHwxNzg3MjM3MjY5fDA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="現場か手元（人が写るもの）" loading="lazy" decoding="async"></div>
+      <div class="about__body">
+        <h2 class="about__ttl fade-up">
+          <span class="np">一本の花から、</span><span class="np">ご相談ください。</span>
+        </h2>
+        <p class="about__txt fade-up">
+          <span class="np">フラワーショップは、</span><span class="np">花を売る場所であると同時に、</span><span class="np">誰かに気持ちを渡すための</span><span class="np">場所でもあります。</span><span class="np">だからこそ、</span><span class="np">贈る相手のことや、</span><span class="np">飾る部屋のことを</span><span class="np">先にうかがいます。</span><span class="np">花はそのあとで選びます。</span>
+        </p>
+
+        <div class="promises">
+          <div class="promise fade-up">
+            <h3 class="promise__k">
+              ご用途を先にうかがいます
+            </h3>
+            <p class="promise__d">
+              <span class="np">どなたに、どの場面で渡すのか。</span><span class="np">そこが決まると、</span><span class="np">選ぶ花もおのずと決まります。</span>
+            </p>
+          </div>
+          <div class="promise fade-up">
+            <h3 class="promise__k">
+              季節の花からお選びします
+            </h3>
+            <p class="promise__d">
+              <span class="np">その時季に出回る花を中心に、</span><span class="np">色みや香りを見ながら</span><span class="np">組み合わせます。</span><span class="np">苦手な花もお伝えください。</span>
+            </p>
+          </div>
+          <div class="promise fade-up">
+            <h3 class="promise__k">
+              ご予算にあわせて組みます
+            </h3>
+            <p class="promise__d">
+              <span class="np">ご予算の範囲でお作りしますので、</span><span class="np">はじめに目安を</span><span class="np">お聞かせください。</span><span class="np">花材は都度ご相談します。</span>
+            </p>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  
+  <section id="access" class="block">
+    <div class="wrap">
+      <h2 class="sec-ttl">
+        <span class="sec-ttl__en">ACCESS</span>
+        <span class="sec-ttl__ja">会社案内と対応エリア</span>
+      </h2>
       <div class="info">
-        <dl class="fade-up">
-          <div><dt>住所</dt><dd>東京都港区南青山５丁目７−２</dd></div>
-          <div><dt>電話</dt><dd>03-5464-0743</dd></div>
-          <div><dt>営業時間</dt><dd>10:00〜19:00</dd></div>
-          <div><dt>定休日</dt><dd>—</dd></div>
-          <div><dt>アクセス</dt><dd>—</dd></div>
-          <div><dt>お支払い</dt><dd>お支払い方法は店頭にてご案内します</dd></div>
-        </dl>
-        <div class="ph info__map fade-up"><img src="https://images.unsplash.com/photo-1785594732247-d874f32fb1f1?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8Mnx8YnVzaW5lc3MlMjBpbnRlcmlvciUyMHN0b3JlZnJvbnQlMjBleHRlcmlvcnxlbnwxfDB8fHwxNzg3MjM3NTc5fDA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="外観" loading="lazy" decoding="async"></div>
+        <div class="fade-up">
+          <dl>
+            <div>
+              <dt>所在地</dt>
+              <dd>東京都港区南青山５丁目７−２</dd>
+            </div>
+            <div>
+              <dt>電話</dt>
+              <dd>03-5464-0743</dd>
+            </div>
+            <div>
+              <dt>受付時間</dt>
+              <dd>10:00〜19:00</dd>
+            </div>
+            <div>
+              <dt>定休日</dt>
+              <dd>—</dd>
+            </div>
+            <div>
+              <dt>建設業許可</dt>
+              <dd></dd>
+            </div>
+          </dl>
+          <p class="info__area">
+            <span class="np">店舗は東京都港区南青山にございます。</span><span class="np">ご来店の道順は、</span><span class="np">お電話でもメールでもご案内します。</span>
+          </p>
+        </div>
+        <div class="info__map ph fade-up"><img src="https://images.unsplash.com/photo-1785594732247-d874f32fb1f1?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8Mnx8YnVzaW5lc3MlMjBpbnRlcmlvciUyMHN0b3JlZnJvbnQlMjBleHRlcmlvcnxlbnwxfDB8fHwxNzg3MjM3NTc5fDA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="外観" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </section>
 
   
-  <section id="reserve" class="band is-invert">
-    <div class="block reserve">
-      <div class="sec-head fade-up">
-        <div>
-          <p class="sec-en">
-            CONTACT
-          </p>
-          <h2 class="sec-h wave is-center">
-            ご相談・ご注文
-          </h2>
-        </div>
-      </div>
-      <p class="lead fade-up">
-        <span class="np">ご用途やお渡しの日が決まっていなくても構いません。</span><span class="np">お電話またはメールで、</span><span class="np">お気軽にお声がけください。</span>
+  <section id="reserve" class="block block--dark">
+    <div class="wrap contact">
+      <h2 class="contact__ttl fade-up">
+        <span class="np">まずは、</span><span class="np">お電話かメールで。</span>
+      </h2>
+      <p class="contact__d fade-up">
+        <span class="np">毎日10時から19時まで、</span><span class="np">お電話とメールで</span><span class="np">ご相談をお受けします。</span>
       </p>
-      <ul class="ways fade-up">
-        <li class="way way--top">
-          <span class="badge">おすすめ</span>
-          <h3>お電話</h3>
-          <p><span class="np">営業時間内におつなぎします。</span><span class="np">ご用途とお渡しの日をお伝えいただくと、</span><span class="np">ご案内がはやくなります。</span></p>
-          <a class="btn-key" href="tel:03-5464-0743">電話をかける</a>
-        </li>
-        <li class="way">
-          <h3>メール</h3>
-          <p><span class="np">ご用途・ご希望の日・</span><span class="np">お渡しの場所をお書き添えください。</span><span class="np">順にご返信いたします。</span></p>
-          <a class="btn-ghost" href="#reserve">メールで問い合わせる</a>
-        </li>
-        <li class="way">
-          <h3>ご来店</h3>
-          <span class="tel-big">03-5464-0743</span>
-          <p><span class="np">十時から十九時まで、</span><span class="np">年中無休で店頭におります。</span><span class="np">花をお仕立てしている間は</span><span class="np">お待たせすることがございます。</span></p>
-        </li>
-      </ul>
+      <a class="contact__tel" href="tel:0420000000">
+        03-5464-0743
+      </a>
+      <p class="contact__hours">
+        10:00〜19:00
+      </p>
+      <div class="contact__btns fade-up">
+        <a class="btn btn--deep" href="#reserve">メールで相談する</a>
+        <a class="btn btn--line" href="tel:0420000000">電話をかける</a>
+      </div>
     </div>
   </section>
 
 </main>
 
-<footer>
-  <span class="brand__en">Nicolai Bergmann Flowers & Design Flagship Store</span>
-  <p>
-    Nicolai Bergmann Flowers & Design Flagship Store<br>東京都港区南青山５丁目７−２<br>03-5464-0743 10:00〜19:00
+<footer class="ft">
+  <span class="ft__name">
+    Nicolai Bergmann Flowers & Design Flagship Store
+  </span>
+  <p class="ft__d">
+    03-5464-0743 10:00〜19:00
   </p>
-  <small>© Nicolai Bergmann Flowers & Design Flagship Store</small>
+  <small class="ft__c">© Nicolai Bergmann Flowers & Design Flagship Store</small>
 </footer>
 
 <div class="sp-bar">
-  <a class="a-tel" href="tel:0300000000">電話する</a>
-  <a class="a-web" href="#reserve">ご予約</a>
+  <a href="tel:0420000000">電話する</a>
+  <a href="#reserve">無料で相談</a>
 </div>
 
 <script>
-  // スクロール出現（IntersectionObserver）
+  // スクロール出現（IntersectionObserver）。対象は文字の塊だけ — 写真枠は隠さない
   var io = new IntersectionObserver(function(es){
     es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); } });
   },{threshold:.12});
   document.querySelectorAll('.fade-up').forEach(function(el){ io.observe(el); });
 
 </script>
-<p class="photo-credit" style="font-size:11px;text-align:center;padding:12px 16px;margin:0">Photo by <a href="https://unsplash.com/@kate_sade?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">kate.sade</a>、<a href="https://unsplash.com/@wolfart32?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Rodrigo Rodrigues | WOLF Λ R T</a>、<a href="https://unsplash.com/@mdishakrahman?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Md Ishak Rahman</a>、<a href="https://unsplash.com/@smrodriguez?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">SM Rodriguez</a> on <a href="https://unsplash.com/?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></p>
+<p class="photo-credit" style="font-size:11px;text-align:center;padding:12px 16px;margin:0">Photo by <a href="https://unsplash.com/@ryunosuke_kikuno?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Ryunosuke Kikuno</a>、<a href="https://unsplash.com/@joselosada?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Jose Losada</a>、<a href="https://unsplash.com/@boxsquare?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">cody weiss</a>、<a href="https://unsplash.com/@luaybarani?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Luay Barani</a>、<a href="https://unsplash.com/@smrodriguez?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">SM Rodriguez</a> on <a href="https://unsplash.com/?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></p>
 <section id="privacy-policy" class="legal">
   <div class="narrow">
     <h2>プライバシーポリシー</h2>
